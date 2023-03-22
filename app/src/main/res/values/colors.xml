@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#9FA8DA</color>
+    <color name="purple_500">#3F51B5</color>
+    <color name="purple_700">#303F9F</color>
+    <color name="teal_200">#EF9A9A</color>
+    <color name="teal_700">#D32F2F</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="background_transparent">#401B1B1B</color>
+    <color name="background_transparent_green">#48689F38</color>
+    <color name="green">#689F38</color>
+    <color name="yellow">#F7A60E</color>
+
+    // GrayScale
+    <color name="gray_scale">#62636C</color>
+    <color name="gray_scale_900">#383941</color>
+    <color name="gray_scale_800">#4A4B53</color>
+    <color name="gray_scale_700">#5D5E67</color>
+    <color name="gray_scale_600">#70717B</color>
+    <color name="gray_scale_500">#85868F</color>
+    <color name="gray_scale_400">#9A9BA4</color>
+    <color name="gray_scale_300">#AFB0BA</color>
+    <color name="gray_scale_200">#C5C6D0</color>
+    <color name="gray_scale_100">#DBDCE6</color>
+    <color name="gray_scale_50">#F2F3FD</color>
+</resources>
