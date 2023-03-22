@@ -29,6 +29,6 @@ class TodoListDiffCallback : DiffUtil.ItemCallback<ToDoItemModel>() {
     }
 
     override fun areContentsTheSame(oldItem: ToDoItemModel, newItem: ToDoItemModel): Boolean {
-        return newItem == oldItem
+        return true
     }
 }

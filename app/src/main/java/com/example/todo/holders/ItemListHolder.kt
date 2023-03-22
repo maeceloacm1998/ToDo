@@ -19,13 +19,14 @@ class ItemListHolder(
                 if (item.finish) {
                     setBackground(
                         Paint.LINEAR_TEXT_FLAG,
-                        R.color.black, R.color.white
+                        R.color.white,
+                        R.color.black,
                     )
                 } else {
                     setBackground(
                         Paint.STRIKE_THRU_TEXT_FLAG,
-                        R.color.green,
-                        R.color.background_transparent_green
+                        R.color.background_transparent_green,
+                        R.color.green
                     )
                 }
 
