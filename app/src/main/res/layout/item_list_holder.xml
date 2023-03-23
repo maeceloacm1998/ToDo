@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_uncheck_item">
 
     <CheckBox
         android:id="@+id/checkbox"
@@ -22,6 +23,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/checkbox"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toTopOf="@id/checkbox"
         tools:text="sem tarefa" />

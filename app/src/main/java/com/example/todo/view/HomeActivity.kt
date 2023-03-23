@@ -9,13 +9,14 @@ import com.example.todo.adapters.ToDoListAdapter
 import com.example.todo.databinding.ActivityHomeBinding
 import com.example.todo.extension.setVisible
 import com.example.todo.models.StateSuccess
+import com.example.todo.models.ToDoItemModel
 import com.example.todo.viewModel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
-    private val toDoListAdapter by lazy { ToDoListAdapter { finishItem() } }
+    private val toDoListAdapter by lazy { ToDoListAdapter(clickListener = ::clickListener) }
 
     private val viewModel by viewModel<HomeViewModel>()
 
@@ -31,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun observables() {
         viewModel.state.observe(this) { state ->
-            when(state) {
+            when (state) {
                 is StateSuccess -> {
                     toDoListAdapter.submitList(state.data)
                 }
@@ -49,8 +50,9 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun finishItem() {
-
+    private fun clickListener(item: ToDoItemModel) {
+        val copy = item.copy(finish = !item.finish)
+        viewModel.updateItem(copy)
     }
 
     companion object {

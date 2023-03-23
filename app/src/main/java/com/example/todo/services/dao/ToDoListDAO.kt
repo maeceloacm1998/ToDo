@@ -14,6 +14,9 @@ interface ToDoListDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertItem(item: ToDoListEntity)
 
+    @Query("UPDATE todo_list_table SET finish= :finish, title= :title WHERE id= :id")
+    fun updateItem(id: String, title: String, finish: Boolean)
+
     @Query("DELETE FROM todo_list_table WHERE id=:id")
     fun deleteItem(id: Int)
 }

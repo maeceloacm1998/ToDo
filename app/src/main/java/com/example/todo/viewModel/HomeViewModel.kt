@@ -7,6 +7,7 @@ import com.example.todo.models.StateError
 import com.example.todo.models.StateResponse
 import com.example.todo.models.StateSuccess
 import com.example.todo.models.ToDoItemModel
+import com.example.todo.models.asDomainMode
 import com.example.todo.services.dao.ToDoListDAO
 import com.example.todo.services.entity.ToDoListEntity
 import com.example.todo.services.entity.asDomainMode
@@ -21,16 +22,24 @@ class HomeViewModel(
 
     fun getTodoList() {
         val items = toDoListDAO.getItems()
-
         if (items.isEmpty()) {
             _state.value = StateError(IOError(Throwable("Lista está vazia")))
             return
         }
-
         _state.value = StateSuccess(items.map { it.asDomainMode() })
     }
 
-    fun addItem(item: ToDoListEntity) {
-        toDoListDAO.insertItem(item)
+    fun updateItem(item: ToDoItemModel) {
+        val parseItem = item.asDomainMode()
+
+        toDoListDAO.run {
+            updateItem(
+                id = parseItem.id,
+                title = parseItem.title,
+                finish = parseItem.finish
+            )
+        }
+
+        getTodoList()
     }
 }

@@ -1,6 +1,8 @@
 package com.example.todo.holders
 
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
@@ -14,19 +16,18 @@ class ItemListHolder(
 
     fun bind(item: ToDoItemModel) {
         binding.apply {
-
             itemContainer.setOnClickListener {
                 if (item.finish) {
                     setBackground(
                         Paint.LINEAR_TEXT_FLAG,
-                        R.color.white,
+                        R.drawable.bg_uncheck_item,
                         R.color.black,
                     )
                 } else {
                     setBackground(
                         Paint.STRIKE_THRU_TEXT_FLAG,
-                        R.color.background_transparent_green,
-                        R.color.green
+                        R.drawable.bg_check_item,
+                        R.color.secondary
                     )
                 }
 
@@ -44,13 +45,11 @@ class ItemListHolder(
         }
     }
 
-    private fun setBackground(paintFlag: Int, backgroundColor: Int, textColor: Int) {
+    private fun setBackground(paintFlag: Int, drawable: Int, textColor: Int) {
         binding.apply {
             title.paintFlags = paintFlag
             title.setTextColor(ContextCompat.getColor(title.context, textColor))
-            itemContainer.setBackgroundColor(
-                ContextCompat.getColor(itemContainer.context, backgroundColor)
-            )
+            itemContainer.background = ContextCompat.getDrawable(itemContainer.context, drawable)
         }
     }
 }
