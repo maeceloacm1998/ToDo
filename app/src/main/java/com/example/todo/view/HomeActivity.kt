@@ -7,30 +7,42 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todo.adapters.ToDoListAdapter
 import com.example.todo.databinding.ActivityHomeBinding
-import com.example.todo.models.ToDoItemModel
+import com.example.todo.extension.setVisible
+import com.example.todo.models.StateSuccess
+import com.example.todo.viewModel.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
-    val list: List<ToDoItemModel> = listOf(ToDoItemModel(id = "1", title = "teste", finish = false))
+    private val toDoListAdapter by lazy { ToDoListAdapter { finishItem() } }
 
-    private val toDoListAdapter by lazy {
-        ToDoListAdapter {
-            finishItem()
-        }
-    }
+    private val viewModel by viewModel<HomeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        observables()
         setupViews()
+        viewModel.getTodoList()
+    }
+
+    private fun observables() {
+        viewModel.state.observe(this) { state ->
+            when(state) {
+                is StateSuccess -> {
+                    toDoListAdapter.submitList(state.data)
+                }
+                else -> {
+                    binding.emptyError.emptyScreen.setVisible(true)
+                }
+            }
+        }
     }
 
     private fun setupViews() {
-        toDoListAdapter.submitList(list)
-
         binding.itemsRv.apply {
             adapter = toDoListAdapter
             layoutManager = LinearLayoutManager(applicationContext)

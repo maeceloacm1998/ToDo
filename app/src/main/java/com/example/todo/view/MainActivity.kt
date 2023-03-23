@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.todo.R
 import com.example.todo.di.HomeDependencyInjectModules
+import com.example.todo.di.RoomDependencyInjectModules
+import com.example.todo.utils.KoinUtils
 import com.example.todo.utils.KoinUtils.addModules
 import org.koin.core.context.startKoin
 
@@ -18,8 +20,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startKoin() {
+        KoinUtils.createInstance(applicationContext)
+
         addModules(*HomeDependencyInjectModules.modules)
-        startKoin { applicationContext }
+        addModules(*RoomDependencyInjectModules.modules)
     }
 
     private fun goToHome() {

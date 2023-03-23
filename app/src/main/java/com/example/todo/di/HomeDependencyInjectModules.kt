@@ -1,23 +1,12 @@
 package com.example.todo.di
 
-import androidx.room.Room
-import com.example.todo.services.database.TodoListDB
-import org.koin.android.ext.koin.androidContext
+import com.example.todo.viewModel.HomeViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object HomeDependencyInjectModules {
     private val homeModules = module {
-        single {
-            Room.databaseBuilder(
-                androidContext(),
-                TodoListDB::class.java,
-                TodoListDB.DATABASE_NAME
-            ).build()
-        }
-        single {
-            val database = get<TodoListDB>()
-            database.todoListDAO()
-        }
+        viewModel { HomeViewModel(get()) }
     }
 
     val modules = arrayOf(homeModules)

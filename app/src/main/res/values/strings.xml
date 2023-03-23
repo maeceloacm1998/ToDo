@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">todo</string>
+
+    // Empty Screen
+    <string name="empty_title">Infelizmente não foi cadasrrado nenhum item :(</string>
+    <string name="retry_text">Tentar Novamente</string>
 </resources>

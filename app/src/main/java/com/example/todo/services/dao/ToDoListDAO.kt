@@ -9,7 +9,7 @@ import com.example.todo.services.entity.ToDoListEntity
 @Dao
 interface ToDoListDAO {
     @Query("SELECT * FROM todo_list_table")
-    fun getItems()
+    fun getItems(): List<ToDoListEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertItem(item: ToDoListEntity)

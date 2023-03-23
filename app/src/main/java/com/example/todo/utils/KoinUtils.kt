@@ -11,7 +11,6 @@ import org.koin.core.module.Module
 object KoinUtils {
     private lateinit var mKoinApplication: KoinApplication
 
-    @JvmStatic
     fun addModules(vararg modules: Module) {
         loadKoinModules(modules.asList())
     }
@@ -20,7 +19,6 @@ object KoinUtils {
         unloadKoinModules(modules.asList())
     }
 
-    @JvmStatic
     fun createInstance(context: Context) {
         mKoinApplication = startKoin {
             androidContext(context)
