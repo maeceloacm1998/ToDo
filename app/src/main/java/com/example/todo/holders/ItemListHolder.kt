@@ -17,21 +17,7 @@ class ItemListHolder(
     fun bind(item: ToDoItemModel) {
         binding.apply {
             itemContainer.setOnClickListener {
-                if (item.finish) {
-                    setBackground(
-                        Paint.LINEAR_TEXT_FLAG,
-                        R.drawable.bg_uncheck_item,
-                        R.color.black,
-                    )
-                } else {
-                    setBackground(
-                        Paint.STRIKE_THRU_TEXT_FLAG,
-                        R.drawable.bg_check_item,
-                        R.color.secondary
-                    )
-                }
-
-                checkbox.isChecked = !item.finish
+                backgroundItem(item)
                 clickListener(item)
             }
 
@@ -41,8 +27,27 @@ class ItemListHolder(
                 }
             }
 
+            backgroundItem(item)
             title.text = item.title
         }
+    }
+
+    private fun backgroundItem(item: ToDoItemModel) {
+        if (!item.finish) {
+            setBackground(
+                Paint.LINEAR_TEXT_FLAG,
+                R.drawable.bg_uncheck_item,
+                R.color.black,
+            )
+        } else {
+            setBackground(
+                Paint.STRIKE_THRU_TEXT_FLAG,
+                R.drawable.bg_check_item,
+                R.color.secondary
+            )
+        }
+
+        binding.checkbox.isChecked = item.finish
     }
 
     private fun setBackground(paintFlag: Int, drawable: Int, textColor: Int) {

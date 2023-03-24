@@ -35,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
         viewModel.state.observe(this) { state ->
             when (state) {
                 is StateSuccess -> {
+                    binding.emptyError.emptyScreen.setVisible(false)
                     toDoListAdapter.submitList(state.data)
                 }
                 else -> {
