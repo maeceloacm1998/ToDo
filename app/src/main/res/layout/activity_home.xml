@@ -22,6 +22,19 @@
         app:title="ToDo List Expresso"
         app:titleTextColor="@color/secondary" />
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/home_title"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/primary"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/items_rv"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_rv"
         android:layout_width="match_parent"
@@ -30,7 +43,7 @@
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/new_task"
