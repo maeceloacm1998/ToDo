@@ -9,7 +9,6 @@ import com.example.todo.models.StateSuccess
 import com.example.todo.models.ToDoItemModel
 import com.example.todo.models.asDomainMode
 import com.example.todo.services.dao.ToDoListDAO
-import com.example.todo.services.entity.ToDoListEntity
 import com.example.todo.services.entity.asDomainMode
 import java.io.IOError
 
@@ -40,6 +39,11 @@ class HomeViewModel(
             )
         }
 
+        getTodoList()
+    }
+
+    fun addNewTask(item: ToDoItemModel) {
+        toDoListDAO.insertItem(item.asDomainMode())
         getTodoList()
     }
 }

@@ -12,6 +12,7 @@ import com.example.todo.models.StateSuccess
 import com.example.todo.models.ToDoItemModel
 import com.example.todo.viewModel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.UUID
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -48,6 +49,17 @@ class HomeActivity : AppCompatActivity() {
             adapter = toDoListAdapter
             layoutManager = LinearLayoutManager(applicationContext)
         }
+
+        binding.newTask.setOnClickListener {
+            NewTaskDialog(::createNewTask).show(supportFragmentManager, NewTaskDialog.TAG)
+        }
+    }
+
+    private fun createNewTask(title: String) {
+        val item = ToDoItemModel(
+            id = UUID.randomUUID().toString(), title = title, finish = false
+        )
+        viewModel.addNewTask(item)
     }
 
     private fun clickListener(item: ToDoItemModel) {
