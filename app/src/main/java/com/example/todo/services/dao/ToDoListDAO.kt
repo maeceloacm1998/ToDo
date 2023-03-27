@@ -19,4 +19,7 @@ interface ToDoListDAO {
 
     @Query("DELETE FROM todo_list_table WHERE id=:id")
     fun deleteItem(id: Int)
+
+    @Query("DELETE FROM todo_list_table")
+    fun deleteTable()
 }

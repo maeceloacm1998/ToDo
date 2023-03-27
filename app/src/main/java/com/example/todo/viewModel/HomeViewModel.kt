@@ -46,4 +46,8 @@ class HomeViewModel(
         toDoListDAO.insertItem(item.asDomainMode())
         getTodoList()
     }
+
+    fun deleteAllItems() {
+        toDoListDAO.deleteTable()
+    }
 }
