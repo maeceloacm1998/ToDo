@@ -13,4 +13,9 @@
 
     // Home Screen
     <string name="home_title">Lista de tarefas</string>
+
+    // Dialog
+    <string name="delete_task_description">Deseja realmente deletar esse item?</string>
+    <string name="delete_task_negative">Não</string>
+    <string name="delete_task_accept">Sim</string>
 </resources>

@@ -18,7 +18,7 @@ interface ToDoListDAO {
     fun updateItem(id: String, title: String, finish: Boolean)
 
     @Query("DELETE FROM todo_list_table WHERE id=:id")
-    fun deleteItem(id: Int)
+    fun deleteItem(id: String)
 
     @Query("DELETE FROM todo_list_table")
     fun deleteTable()

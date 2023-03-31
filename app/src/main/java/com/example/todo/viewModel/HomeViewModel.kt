@@ -47,6 +47,10 @@ class HomeViewModel(
         getTodoList()
     }
 
+    fun deleteItem(item: ToDoItemModel) {
+        toDoListDAO.deleteItem(item.id)
+    }
+
     fun deleteAllItems() {
         toDoListDAO.deleteTable()
     }

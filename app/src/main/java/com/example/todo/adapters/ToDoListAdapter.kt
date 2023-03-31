@@ -9,13 +9,18 @@ import com.example.todo.databinding.ItemListHolderBinding
 import com.example.todo.models.ToDoItemModel
 
 class ToDoListAdapter(
-    private var clickListener: (item: ToDoItemModel) -> Unit
+    private var clickListener: (item: ToDoItemModel) -> Unit,
+    private var clickDeleteTaskListener: (item: ToDoItemModel) -> Unit,
 ) : ListAdapter<ToDoItemModel, ItemListHolder>(TodoListDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemListHolder {
         val binding = ItemListHolderBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return ItemListHolder(binding = binding, clickListener = clickListener)
+        return ItemListHolder(
+            binding = binding,
+            clickListener = clickListener,
+            clickDeleteTaskListener = clickDeleteTaskListener
+        )
     }
 
     override fun onBindViewHolder(holder: ItemListHolder, position: Int) {

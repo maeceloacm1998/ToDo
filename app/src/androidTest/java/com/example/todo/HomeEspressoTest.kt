@@ -96,4 +96,21 @@ class HomeEspressoTest {
         onView(withText(newTaskTitle)).perform(click())
         checkboxTaskItem.check(matches(not(isChecked())))
     }
+
+    @Test
+    fun test_deleteTaskItem() {
+        val dialog = onView(withId(R.id.new_task))
+        val editTextTitle = onView(withId(R.id.task_title))
+        val createNewTaskButton = onView(withId(R.id.create_task))
+        val acceptDeleteItem = R.string.delete_task_accept
+        val newTaskTitle = "teste espresso"
+
+        dialog.perform(click())
+        editTextTitle.perform(typeText(newTaskTitle))
+        createNewTaskButton.perform(click())
+        onView(withText(newTaskTitle)).perform(longClick())
+        onView(withText(acceptDeleteItem)).perform(longClick())
+
+        onView(withText(newTaskTitle)).check(matches(not(isDisplayed())))
+    }
 }
