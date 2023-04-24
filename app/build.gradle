@@ -63,7 +63,7 @@ dependencies {
     def koinVersion = "3.2.2"
     def roomVersion = '2.2.5'
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -89,5 +89,9 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    androidTestImplementation "io.mockk:mockk:1.13.2"
+    implementation 'androidx.test:monitor:1.6.1'
+    androidTestImplementation "androidx.arch.core:core-testing:2.2.0"
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+    implementation 'org.koin:koin-android:2.0.1'
+    testImplementation 'org.koin:koin-test:2.0.1'
 }

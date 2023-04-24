@@ -3,6 +3,7 @@ package com.example.todo.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.todo.models.IHomeViewModel
 import com.example.todo.models.StateError
 import com.example.todo.models.StateResponse
 import com.example.todo.models.StateSuccess
@@ -14,12 +15,12 @@ import java.io.IOError
 
 class HomeViewModel(
     private val toDoListDAO: ToDoListDAO
-) : ViewModel() {
+) : ViewModel(), IHomeViewModel {
 
     private var _state = MutableLiveData<StateResponse<List<ToDoItemModel>>>()
     var state: LiveData<StateResponse<List<ToDoItemModel>>> = _state
 
-    fun getTodoList() {
+    override fun getTodoList() {
         val items = toDoListDAO.getItems()
         if (items.isEmpty()) {
             _state.value = StateError(IOError(Throwable("Lista está vazia")))
@@ -28,7 +29,7 @@ class HomeViewModel(
         _state.value = StateSuccess(items.map { it.asDomainMode() })
     }
 
-    fun updateItem(item: ToDoItemModel) {
+    override fun updateItem(item: ToDoItemModel) {
         val parseItem = item.asDomainMode()
 
         toDoListDAO.run {
@@ -42,16 +43,16 @@ class HomeViewModel(
         getTodoList()
     }
 
-    fun addNewTask(item: ToDoItemModel) {
+    override fun addNewTask(item: ToDoItemModel) {
         toDoListDAO.insertItem(item.asDomainMode())
         getTodoList()
     }
 
-    fun deleteItem(item: ToDoItemModel) {
+    override fun deleteItem(item: ToDoItemModel) {
         toDoListDAO.deleteItem(item.id)
     }
 
-    fun deleteAllItems() {
+    override fun deleteAllItems() {
         toDoListDAO.deleteTable()
     }
 }
