@@ -34,9 +34,7 @@ class HomeViewModel(
 
         toDoListDAO.run {
             updateItem(
-                id = parseItem.id,
-                title = parseItem.title,
-                finish = parseItem.finish
+                id = parseItem.id, title = parseItem.title, finish = parseItem.finish
             )
         }
 
@@ -50,9 +48,11 @@ class HomeViewModel(
 
     override fun deleteItem(item: ToDoItemModel) {
         toDoListDAO.deleteItem(item.id)
+        getTodoList()
     }
 
     override fun deleteAllItems() {
         toDoListDAO.deleteTable()
+        getTodoList()
     }
 }
