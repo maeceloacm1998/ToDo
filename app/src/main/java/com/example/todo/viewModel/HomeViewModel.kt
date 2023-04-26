@@ -23,10 +23,10 @@ class HomeViewModel(
     override fun getTodoList() {
         val items = toDoListDAO.getItems()
         if (items.isEmpty()) {
-            _state.value = StateError(IOError(Throwable("Lista está vazia")))
+            _state.postValue(StateError(IOError(Throwable("Lista está vazia"))))
             return
         }
-        _state.value = StateSuccess(items.map { it.asDomainMode() })
+        _state.postValue(StateSuccess(items.map { it.asDomainMode() }))
     }
 
     override fun updateItem(item: ToDoItemModel) {

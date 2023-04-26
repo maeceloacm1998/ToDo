@@ -57,10 +57,29 @@ class HomeEspressoTest {
         val dialog = onView(withId(R.id.new_task))
 
         dialog.perform(click())
-        dialog.inRoot(isDialog())
         onView(withText(R.string.new_task_title)).check(matches(isDisplayed()))
     }
 
+    @Test
+    fun test_existCloseButtonTaskDialog() {
+        val dialog = onView(withId(R.id.new_task))
+        val closeBtnDialog = onView(withId(R.id.close))
+
+        dialog.perform(click())
+
+        closeBtnDialog.check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun test_clickCloseButtonTaskDialog() {
+        val dialog = onView(withId(R.id.new_task))
+        val closeBtnDialog = onView(withId(R.id.close))
+
+        dialog.perform(click())
+        closeBtnDialog.perform(click())
+
+        onView(withText("ToDo List Expresso")).check(matches(isDisplayed()))
+    }
 
     @Test
     fun test_createNewTask() {
