@@ -78,7 +78,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun clickDeleteTaskListener(item: ToDoItemModel) {
         viewModel.deleteItem(item)
-        viewModel.getTodoList()
     }
 
     companion object {
